@@ -45,7 +45,6 @@ public class Main {
         frame.add(cardPanel);
         frame.setVisible(true);
     }
-
     private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor) {
         //Container Panel Settings
         JPanel panel = new JPanel(new BorderLayout());
@@ -87,30 +86,20 @@ public class Main {
     private JPanel createNewCustomerPage() {
         JPanel newCustomerPanel = new JPanel();
         newCustomerPanel.setLayout(new BoxLayout(newCustomerPanel, BoxLayout.Y_AXIS));
-        JTextField customerIdField = new JTextField(20);
-        JTextField nameField = new JTextField(20);
-        JTextField addressField = new JTextField(20);
-        JCheckBox hasLoadingDockCheck = new JCheckBox();
-        JTextField deliveryHoursField = new JTextField(20);
-        JTextField emailField = new JTextField(20);
-        JPasswordField passwordField = new JPasswordField(20);
 
-        newCustomerPanel.add(new JLabel("Customer ID:"));
-        newCustomerPanel.add(customerIdField);
-        newCustomerPanel.add(new JLabel("Name:"));
-        newCustomerPanel.add(nameField);
-        newCustomerPanel.add(new JLabel("Address:"));
-        newCustomerPanel.add(addressField);
-        newCustomerPanel.add(new JLabel("Has Loading Dock:"));
-        newCustomerPanel.add(hasLoadingDockCheck);
-        newCustomerPanel.add(new JLabel("Delivery Hours:"));
-        newCustomerPanel.add(deliveryHoursField);
-        newCustomerPanel.add(new JLabel("Email:"));
-        newCustomerPanel.add(emailField);
-        newCustomerPanel.add(new JLabel("Password:"));
-        newCustomerPanel.add(passwordField);
+        JTextField customerIdField = createOrderFields(newCustomerPanel, "Customer ID:");
+        JTextField nameField = createOrderFields(newCustomerPanel, "Name:");
+        JTextField addressField = createOrderFields(newCustomerPanel, "Address:");
+
+        JTextField emailField = createOrderFields(newCustomerPanel, "Email:");
+        JPasswordField passwordField = createPasswordFields(newCustomerPanel, "Password:");
+
+        JCheckBox hasLoadingDockCheck = createCheckFields(newCustomerPanel, "Has Loading Dock: ");
+        JTextField deliveryHoursField = createOrderFields(newCustomerPanel, "Delivery Hours:");
 
         JButton submitButton = new JButton("Add Customer");
+        submitButton.setBackground(buttonColor);
+        submitButton.setForeground(Color.WHITE);
         submitButton.addActionListener(e -> {
             try {
                 String customerId = customerIdField.getText();
@@ -128,23 +117,16 @@ public class Main {
 
             }
         });
+
         JButton backButton = new JButton("Back");
+        backButton.setBackground(buttonColor);
+        backButton.setForeground(Color.WHITE);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel"));
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(submitButton);
         bottomPanel.add(backButton);
         newCustomerPanel.add(bottomPanel);
         return newCustomerPanel;
-    }
-    private JTextField createOrderFields(JPanel master, String label) {
-        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JLabel Label = new JLabel(label);
-        Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
-        JTextField Field = new JTextField(25);
-        Panel.add(Label);
-        Panel.add(Field);
-        master.add(Panel);
-        return Field;
     }
     private JPanel createOrderFormPage() {
         JPanel orderFormPanel = new JPanel();
@@ -338,5 +320,40 @@ public class Main {
         } catch (IOException ex) {
 
         }
+    }
+
+    //Stylized fields
+    private JTextField createOrderFields(JPanel master, String label) {
+        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        Panel.setBackground(backgroundColor);
+        JLabel Label = new JLabel(label);
+        Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
+        JTextField Field = new JTextField(25);
+        Panel.add(Label);
+        Panel.add(Field);
+        master.add(Panel);
+        return Field;
+    }
+    private JCheckBox createCheckFields(JPanel master, String label) {
+        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        Panel.setBackground(backgroundColor);
+        JLabel Label = new JLabel(label);
+        Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
+        JCheckBox Field = new JCheckBox();
+        Panel.add(Label);
+        Panel.add(Field);
+        master.add(Panel);
+        return Field;
+    }
+    private JPasswordField createPasswordFields(JPanel master, String label){
+        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        Panel.setBackground(backgroundColor);
+        JLabel Label = new JLabel(label);
+        Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
+        JPasswordField Field = new JPasswordField(25);
+        Panel.add(Label);
+        Panel.add(Field);
+        master.add(Panel);
+        return Field;
     }
 }
