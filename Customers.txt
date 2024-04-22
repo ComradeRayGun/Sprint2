@@ -1,0 +1,2 @@
+001,John Doe,123 Maple St.,True,9am-5pm,john.doe@example.com
+002,Jane Smith,456 Oak St.,False,10am-6pm,jane.smith@example.com
