@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
+    // TEST
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
