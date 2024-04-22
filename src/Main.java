@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    // TEST
+
+    //Theme Colors
+    Color buttonColor = new Color(156,4,4);
+    Color backgroundColor = new Color(216,216,217);
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
@@ -33,22 +36,38 @@ public class Main {
         cardPanel.add(createInventoryPage(), "InventoryPage");
         cardPanel.add(createOrderFormPage(), "OrderFormPage");
         cardPanel.add(createOrderHistoryPage(), "OrderHistoryPage");
-        buttonsPanel.add(createButtonPanel("Customer Management", "Edit, Remove, & View Customers", "CustomerManagementPage"));
-        buttonsPanel.add(createButtonPanel("New Customer", "Input Customer Information", "NewCustomerPage"));
-        buttonsPanel.add(createButtonPanel("Order Form", "Create Order", "OrderFormPage"));
-        buttonsPanel.add(createButtonPanel("Inventory", "Check, Manage & Remove Items From Inventory", "InventoryPage"));
-        buttonsPanel.add(createButtonPanel("Order History", "View order history details", "OrderHistoryPage"));
+        buttonsPanel.add(createButtonPanel("New Customer", "Input Customer Information", "NewCustomerPage", buttonColor));
+        buttonsPanel.add(createButtonPanel("Order Form", "Create Order", "OrderFormPage", buttonColor));
+        buttonsPanel.add(createButtonPanel("Inventory", "Check, Manage & Remove Items From Inventory", "InventoryPage", buttonColor));
+        buttonsPanel.add(createButtonPanel("Customer Management", "Edit, Remove, & View Customers", "CustomerManagementPage", buttonColor));
+        buttonsPanel.add(createButtonPanel("Order History", "View order history details", "OrderHistoryPage", buttonColor));
         cardPanel.add(createCustomerManagementPage(), "CustomerManagementPage");
         frame.add(cardPanel);
         frame.setVisible(true);
     }
-    private JPanel createButtonPanel(String title, String description, String pageName) {
+
+    private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor) {
+        //Container Panel Settings
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel.setBackground(backgroundColor);
+
+        //"src/gui/inventory.png"
+
+
+        //Menu Button Settings
         JButton button = new JButton("Go Now");
         button.addActionListener(e -> cardLayout.show(cardPanel, pageName));
-        JLabel titleLabel = new JLabel(title, JLabel.CENTER);
-        JLabel descriptionLabel = new JLabel(description, JLabel.CENTER);
+        button.setBackground(buttonColor);
+        button.setForeground(Color.WHITE);
+
+        //Button Title Settings
+        JLabel titleLabel = new JLabel(title, JLabel.LEFT);
+        titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD, 14f));
+
+        //Description Settings
+        JLabel descriptionLabel = new JLabel(description, JLabel.LEFT);
+
         panel.add(titleLabel, BorderLayout.NORTH);
         panel.add(descriptionLabel, BorderLayout.CENTER);
         panel.add(button, BorderLayout.SOUTH);
@@ -117,43 +136,39 @@ public class Main {
         newCustomerPanel.add(bottomPanel);
         return newCustomerPanel;
     }
+    private JTextField createOrderFields(JPanel master, String label) {
+        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel Label = new JLabel(label);
+        Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
+        JTextField Field = new JTextField(25);
+        Panel.add(Label);
+        Panel.add(Field);
+        master.add(Panel);
+        return Field;
+    }
     private JPanel createOrderFormPage() {
         JPanel orderFormPanel = new JPanel();
+
         orderFormPanel.setLayout(new BoxLayout(orderFormPanel, BoxLayout.Y_AXIS));
-        JTextField salesRepField = new JTextField(20);
-        JTextField statusField = new JTextField(20);
-        JTextField deliveryDateField = new JTextField(20);
-        JTextField orderDateField = new JTextField(20);
-        JTextField customerField = new JTextField(20);
-        JTextField itemOneNameField = new JTextField(20);
-        JTextField itemTwoNameField = new JTextField(20);
-        JTextField itemThreeNameField = new JTextField(20);
-        JTextField itemOneQuantityField = new JTextField(20);
-        JTextField itemTwoQuantityField = new JTextField(20);
-        JTextField itemThreeQuantityField = new JTextField(20);
-        orderFormPanel.add(new JLabel("Sales Representative:"));
-        orderFormPanel.add(salesRepField);
-        orderFormPanel.add(new JLabel("Order Status:"));
-        orderFormPanel.add(statusField);
-        orderFormPanel.add(new JLabel("Delivery Date:"));
-        orderFormPanel.add(deliveryDateField);
-        orderFormPanel.add(new JLabel("Order Date:"));
-        orderFormPanel.add(orderDateField);
-        orderFormPanel.add(new JLabel("Customer:"));
-        orderFormPanel.add(customerField);
-        orderFormPanel.add(new JLabel("Item 1 Name:"));
-        orderFormPanel.add(itemOneNameField);
-        orderFormPanel.add(new JLabel("Item 2 Name:"));
-        orderFormPanel.add(itemTwoNameField);
-        orderFormPanel.add(new JLabel("Item 3 Name:"));
-        orderFormPanel.add(itemThreeNameField);
-        orderFormPanel.add(new JLabel("Item 1 Quantity:"));
-        orderFormPanel.add(itemOneQuantityField);
-        orderFormPanel.add(new JLabel("Item 2 Quantity:"));
-        orderFormPanel.add(itemTwoQuantityField);
-        orderFormPanel.add(new JLabel("Item 3 Quantity:"));
-        orderFormPanel.add(itemThreeQuantityField);
+
+        JTextField salesRepField = createOrderFields(orderFormPanel, "Sales Representative:");
+        JTextField statusField = createOrderFields(orderFormPanel, "Order Status:");
+        JTextField deliveryDateField = createOrderFields(orderFormPanel, "Delivery Date:");
+        JTextField orderDateField = createOrderFields(orderFormPanel, "Order Date:");
+        JTextField customerField = createOrderFields(orderFormPanel, "Customer:");
+        JTextField itemOneNameField = createOrderFields(orderFormPanel, "Item 1 name:");
+        JTextField itemTwoNameField = createOrderFields(orderFormPanel, "Item 2 name:");
+        JTextField itemThreeNameField = createOrderFields(orderFormPanel, "Item 3 name:");
+        JTextField itemOneQuantityField = createOrderFields(orderFormPanel, "Item 1 quantity:");
+        JTextField itemTwoQuantityField = createOrderFields(orderFormPanel, "Item 2 quantity:");
+        JTextField itemThreeQuantityField = createOrderFields(orderFormPanel, "Item 3 quantity:");
+
+        //Submit button settings
         JButton submitButton = new JButton("Submit Order");
+        submitButton.setBackground(buttonColor);
+        submitButton.setForeground(Color.WHITE);
+
+        //Submit button writing
         submitButton.addActionListener(e -> {
             writeOrderToFile(
                     salesRepField.getText(),
@@ -170,8 +185,13 @@ public class Main {
             );
             JOptionPane.showMessageDialog(orderFormPanel, "Order Submitted!");
         });
+
+        //Back button settings
         JButton backButton = new JButton("Back");
+        backButton.setBackground(buttonColor);
+        backButton.setForeground(Color.WHITE);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel")); // Assuming "ButtonsPanel" is your main page
+
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(submitButton);
         bottomPanel.add(backButton);
