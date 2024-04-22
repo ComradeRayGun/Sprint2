@@ -184,7 +184,7 @@ public class Main {
                 "Date Last Received", "On Order"
         };
         ArrayList<String[]> data = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("/Users/johnroehsler/IdeaProjects/Sprint2/src/Inventory.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Inventory.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 data.add(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1));
