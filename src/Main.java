@@ -33,23 +33,28 @@ public class Main {
         cardPanel.add(createInventoryPage(), "InventoryPage");
         cardPanel.add(createOrderFormPage(), "OrderFormPage");
         cardPanel.add(createOrderHistoryPage(), "OrderHistoryPage");
-        buttonsPanel.add(createButtonPanel("New Customer", "Input Customer Information", "NewCustomerPage", buttonColor));
-        buttonsPanel.add(createButtonPanel("Order Form", "Create Order", "OrderFormPage", buttonColor));
-        buttonsPanel.add(createButtonPanel("Inventory", "Check, Manage & Remove Items From Inventory", "InventoryPage", buttonColor));
-        buttonsPanel.add(createButtonPanel("Customer Management", "Edit, Remove, & View Customers", "CustomerManagementPage", buttonColor));
-        buttonsPanel.add(createButtonPanel("Order History", "View order history details", "OrderHistoryPage", buttonColor));
+        buttonsPanel.add(createButtonPanel("New Customer", "Input Customer Information", "NewCustomerPage", buttonColor, "src/gui/newCustomer.png"));
+        buttonsPanel.add(createButtonPanel("Order Form", "Create Order", "OrderFormPage", buttonColor, "src/gui/orderForm.png"));
+        buttonsPanel.add(createButtonPanel("Inventory", "Check, Manage & Remove Items From Inventory", "InventoryPage", buttonColor, "src/gui/inventory.png"));
+        buttonsPanel.add(createButtonPanel("Customer Management", "Edit, Remove, & View Customers", "CustomerManagementPage", buttonColor, "src/gui/customerManagement.png"));
+        buttonsPanel.add(createButtonPanel("Order History", "View order history details", "OrderHistoryPage", buttonColor, "src/gui/orderHistory.png"));
         cardPanel.add(createCustomerManagementPage(), "CustomerManagementPage");
         frame.add(cardPanel);
         frame.setVisible(true);
     }
-    private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor) {
+    private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor, String imagePath) {
         //Container Panel Settings
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setBackground(backgroundColor);
 
-        //"src/gui/inventory.png"
-
+        //Image
+        ImageIcon imageIcon = new ImageIcon(imagePath);
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setPreferredSize(panel.getSize());
+        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        imageLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         //Menu Button Settings
         JButton button = new JButton("Go Now");
@@ -64,7 +69,8 @@ public class Main {
         //Description Settings
         JLabel descriptionLabel = new JLabel(description, JLabel.LEFT);
 
-        panel.add(titleLabel, BorderLayout.NORTH);
+        panel.add(imageLabel);
+        panel.add(titleLabel, BorderLayout.WEST);
         panel.add(descriptionLabel, BorderLayout.CENTER);
         panel.add(button, BorderLayout.SOUTH);
         return panel;
