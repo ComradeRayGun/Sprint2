@@ -3,8 +3,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,14 +12,13 @@ public class Main {
     //Theme Colors
     Color buttonColor = new Color(156,4,4);
     Color backgroundColor = new Color(216,216,217);
-    private JFrame frame;
     private CardLayout cardLayout;
     private JPanel cardPanel;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Main().createAndShowGUI());
     }
     public void createAndShowGUI() {
-        frame = new JFrame("ACME System");
+        JFrame frame = new JFrame("ACME System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 600);
         cardLayout = new CardLayout();
@@ -92,7 +89,7 @@ public class Main {
         JTextField addressField = createOrderFields(newCustomerPanel, "Address:");
 
         JTextField emailField = createOrderFields(newCustomerPanel, "Email:");
-        JPasswordField passwordField = createPasswordFields(newCustomerPanel, "Password:");
+        JPasswordField passwordField = createPasswordFields(newCustomerPanel);
 
         JCheckBox hasLoadingDockCheck = createCheckFields(newCustomerPanel, "Has Loading Dock: ");
         JTextField deliveryHoursField = createOrderFields(newCustomerPanel, "Delivery Hours:");
@@ -205,11 +202,15 @@ public class Main {
         JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         inventoryPanel.add(scrollPane, BorderLayout.CENTER);
+
         JButton backButton = new JButton("Back");
+        backButton.setBackground(buttonColor);
+        backButton.setForeground(Color.WHITE);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel")); // Assuming "ButtonsPanel" is the main page
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(backButton);
         inventoryPanel.add(bottomPanel, BorderLayout.SOUTH);
+
         return inventoryPanel;
     }
     private void writeCustomerToFile(Customer customer) {
@@ -248,9 +249,15 @@ public class Main {
         JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         orderHistoryPanel.add(scrollPane, BorderLayout.CENTER);
+
         JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel"));
-        orderHistoryPanel.add(backButton, BorderLayout.SOUTH);
+        backButton.setBackground(buttonColor);
+        backButton.setForeground(Color.WHITE);
+        backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel")); // Assuming "ButtonsPanel" is the main page
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(backButton);
+        orderHistoryPanel.add(bottomPanel, BorderLayout.SOUTH);
+
         return orderHistoryPanel;
     }
     private JPanel createCustomerManagementPage() {
@@ -273,6 +280,8 @@ public class Main {
         table.setFillsViewportHeight(true);
         customerManagementPanel.add(scrollPane, BorderLayout.CENTER);
         JButton removeButton = new JButton("Remove Customer");
+        removeButton.setBackground(buttonColor);
+        removeButton.setForeground(Color.WHITE);
         removeButton.addActionListener(e -> {
             int row = table.getSelectedRow();
             if (row >= 0) {
@@ -284,6 +293,8 @@ public class Main {
             }
         });
         JButton backButton = new JButton("Back");
+        backButton.setBackground(buttonColor);
+        backButton.setForeground(Color.WHITE);
         backButton.addActionListener(e -> cardLayout.show(cardPanel, "ButtonsPanel")); // Navigate back to the main panel
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(removeButton);
@@ -314,7 +325,7 @@ public class Main {
                 for (int j = 0; j < model.getColumnCount(); j++) {
                     row[j] = model.getValueAt(i, j);
                 }
-                writer.write(String.join(",", Arrays.asList(row).stream().map(Object::toString).toArray(String[]::new)));
+                writer.write(String.join(",", Arrays.stream(row).map(Object::toString).toArray(String[]::new)));
                 writer.newLine();
             }
         } catch (IOException ex) {
@@ -345,10 +356,10 @@ public class Main {
         master.add(Panel);
         return Field;
     }
-    private JPasswordField createPasswordFields(JPanel master, String label){
+    private JPasswordField createPasswordFields(JPanel master){
         JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         Panel.setBackground(backgroundColor);
-        JLabel Label = new JLabel(label);
+        JLabel Label = new JLabel("Password:");
         Label.setPreferredSize(new Dimension(150, Label.getPreferredSize().height));
         JPasswordField Field = new JPasswordField(25);
         Panel.add(Label);
