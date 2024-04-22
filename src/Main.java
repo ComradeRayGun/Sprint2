@@ -226,7 +226,7 @@ public class Main {
                 customer.hasLoadingDock() + "," +
                 customer.getDeliveryHours() + "," +
                 customer.getEmail() + ",";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("UPDATE WITH FILE LOCATION", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Customers.txt", true))) {
             writer.write(customerData);
         } catch (IOException ex) {
 
@@ -240,7 +240,7 @@ public class Main {
                 "Item 3 Name", "Item 3 Quantity"
         };
         ArrayList<String[]> data = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("UPDATE WITH FILE LOCATION"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Orders.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 data.add(line.split(",", -1));
@@ -273,7 +273,7 @@ public class Main {
         };
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0); // column names with zero rows initially
-        try (BufferedReader reader = new BufferedReader(new FileReader("UPDATE WITH FILE LOCATION"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Customers.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 model.addRow(line.split(",", -1));
@@ -317,7 +317,7 @@ public class Main {
                 itemOneName, itemOneQuantity, itemTwoName, itemTwoQuantity,
                 itemThreeName, itemThreeQuantity
         );
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("UPDATE WITH FILE LOCATION", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Orders.txt", true))) {
             writer.write(orderData);
             writer.newLine();
         } catch (IOException ex) {
@@ -325,7 +325,7 @@ public class Main {
         }
     }
     private void updateCustomerFile(DefaultTableModel model) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("UPDATE WITH FILE LOCATION"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Customers.txt", true))) {
             for (int i = 0; i < model.getRowCount(); i++) {
                 Object[] row = new Object[model.getColumnCount()];
                 for (int j = 0; j < model.getColumnCount(); j++) {
