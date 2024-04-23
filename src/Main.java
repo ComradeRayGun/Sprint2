@@ -144,9 +144,23 @@ public class Main {
         JTextField itemOneNameField = createOrderFields(orderFormPanel, "Item 1 name:");
         JTextField itemTwoNameField = createOrderFields(orderFormPanel, "Item 2 name:");
         JTextField itemThreeNameField = createOrderFields(orderFormPanel, "Item 3 name:");
+        JTextField itemFourNameField = createOrderFields(orderFormPanel, "Item 4 name:");
+        JTextField itemFiveNameField = createOrderFields(orderFormPanel, "Item 5 name:");
+        JTextField itemSixNameField = createOrderFields(orderFormPanel, "Item 6 name:");
+        JTextField itemSevenNameField = createOrderFields(orderFormPanel, "Item 7 name:");
+        JTextField itemEightNameField = createOrderFields(orderFormPanel, "Item 8 name:");
+        JTextField itemNineNameField = createOrderFields(orderFormPanel, "Item 9 name:");
+        JTextField itemTenNameField = createOrderFields(orderFormPanel, "Item 10 name:");
         JTextField itemOneQuantityField = createOrderFields(orderFormPanel, "Item 1 quantity:");
         JTextField itemTwoQuantityField = createOrderFields(orderFormPanel, "Item 2 quantity:");
         JTextField itemThreeQuantityField = createOrderFields(orderFormPanel, "Item 3 quantity:");
+        JTextField itemFourQuantityField = createOrderFields(orderFormPanel, "Item 4 quantity:");
+        JTextField itemFiveQuantityField = createOrderFields(orderFormPanel, "Item 5 quantity:");
+        JTextField itemSixQuantityField = createOrderFields(orderFormPanel, "Item 6 quantity:");
+        JTextField itemSevenQuantityField = createOrderFields(orderFormPanel, "Item 7 quantity:");
+        JTextField itemEightQuantityField = createOrderFields(orderFormPanel, "Item 8 quantity:");
+        JTextField itemNineQuantityField = createOrderFields(orderFormPanel, "Item 9 quantity:");
+        JTextField itemTenQuantityField = createOrderFields(orderFormPanel, "Item 10 quantity:");
 
         //Submit button settings
         JButton submitButton = new JButton("Submit Order");
@@ -166,7 +180,21 @@ public class Main {
                     itemTwoNameField.getText(),
                     itemTwoQuantityField.getText(),
                     itemThreeNameField.getText(),
-                    itemThreeQuantityField.getText()
+                    itemThreeQuantityField.getText()/*,
+                    itemFourNameField.getText(),
+                    itemFourQuantityField.getText(),
+                    itemFiveNameField.getText(),
+                    itemFiveQuantityField.getText(),
+                    itemSixNameField.getText(),
+                    itemSixQuantityField.getText(),
+                    itemSevenNameField.getText(),
+                    itemSevenQuantityField.getText(),
+                    itemEightNameField.getText(),
+                    itemEightQuantityField.getText(),
+                    itemNineNameField.getText(),
+                    itemNineQuantityField.getText(),
+                    itemTenNameField.getText(),
+                    itemTenQuantityField.getText()*/
             );
             JOptionPane.showMessageDialog(orderFormPanel, "Order Submitted!");
         });
@@ -374,7 +402,7 @@ public class Main {
         return Field;
     }
     //Login Page Creation
-    private LoginPage() {
+  /*  private LoginPage() {
         JFrame loginFrame = new JFrame();
         JPanel loginPanel = new JPanel();
 
@@ -405,6 +433,6 @@ public class Main {
         signinButton.setBounds(10, 80, 80, 25);
 
         loginFrame.setVisible(true);
-    }
+    } */
 }
 
