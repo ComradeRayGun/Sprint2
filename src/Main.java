@@ -373,5 +373,38 @@ public class Main {
         master.add(Panel);
         return Field;
     }
+    //Login Page Creation
+    private LoginPage() {
+        JFrame loginFrame = new JFrame();
+        JPanel loginPanel = new JPanel();
+
+        loginFrame.setSize(350,200);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setVisible(true);
+        loginFrame.add(loginPanel);
+
+        loginPanel.setLayout(null);
+
+        JLabel userLabel = new JLabel("User");
+        userLabel.setBounds(10, 20, 80, 25);
+        loginPanel.add(userLabel);
+
+        JTextField userText = new JTextField();
+        userText.setBounds(100, 20, 165, 25);
+        loginPanel.add(userText);
+
+        JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setBounds(10, 50, 80, 25);
+        loginPanel.add(passwordLabel);
+
+        JPasswordField passwordTet = new JPasswordField();
+        passwordTet.setBounds(100, 50, 165, 25);
+        loginPanel.add(passwordTet);
+
+        JButton signinButton = new JButton();
+        signinButton.setBounds(10, 80, 80, 25);
+
+        loginFrame.setVisible(true);
+    }
 }
-//hello
+
