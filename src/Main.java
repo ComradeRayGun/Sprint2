@@ -311,7 +311,7 @@ public class Main {
                 customer.getAddress() + "," +
                 customer.hasLoadingDock() + "," +
                 customer.getDeliveryHours() + "," +
-                customer.getEmail() + ",";
+                customer.getEmail() + "\n";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Customers.txt", true))) {
             writer.write(customerData);
         } catch (IOException ex) {

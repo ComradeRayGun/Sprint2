@@ -1,2 +1,0 @@
-John Doe,Pending,12/24/2024,11/30/2024,Bob Smith,Microfiber Cloth,10,Cleaning Spray,20,Window Wiper,5,Beer,4,Whiskey,5,Rum,6,Tequila,7,Wine,8,Hennessy,9,Gin,10
-Jane Smith,Completed,12/01/2024,11/25/2024,Alice Johnson,Paper Towels,30,Toilet Cleaner,15,Scrub Brush,8,Beer,7,Whiskey,5,Rum,9,Tequila,3,Wine,12,Hennessy,3,Gin,11
