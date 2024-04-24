@@ -4,17 +4,20 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+// LOGIN IS Username:admin Password:password
+// Before running the program, make sure that the file locations are correct, copy the ABSOLUTE path of each
+// file and paste that into the correct field
 public class Main {
-
     //Theme Colors
     Color buttonColor = new Color(156,4,4);
     Color backgroundColor = new Color(216,216,217);
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    // Main method
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Main().createAndShowGUI());
     }
+    // Create and show GUI
     public void createAndShowGUI() {
         JFrame frame = new JFrame("ACME System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,6 +25,7 @@ public class Main {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         JPanel buttonsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
+        // Add panels
         cardPanel.add(createLoginPage(), "LoginPage"); //login testing
         cardPanel.add(buttonsPanel, "ButtonsPanel");
         cardPanel.add(createNewPage("NewCustomerPage"), "NewCustomerPage");
@@ -80,6 +84,7 @@ public class Main {
         return loginPanel;
     }
 
+    // Creates the different panels
     private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor, String imagePath) {
         //Container Panel Settings
         JPanel panel = new JPanel();
@@ -113,6 +118,7 @@ public class Main {
         panel.add(button, BorderLayout.SOUTH);
         return panel;
     }
+    // Creats new page
     private JPanel createNewPage(String pageName) {
         if ("NewCustomerPage".equals(pageName)) {
             return createNewCustomerPage();
@@ -124,10 +130,11 @@ public class Main {
         page.add(backButton);
         return page;
     }
+    // Creates page to create new customer
     private JPanel createNewCustomerPage() {
         JPanel newCustomerPanel = new JPanel();
         newCustomerPanel.setLayout(new BoxLayout(newCustomerPanel, BoxLayout.Y_AXIS));
-
+        //Fields
         JTextField customerIdField = createOrderFields(newCustomerPanel, "Customer ID:");
         JTextField nameField = createOrderFields(newCustomerPanel, "Name:");
         JTextField addressField = createOrderFields(newCustomerPanel, "Address:");
@@ -169,11 +176,12 @@ public class Main {
         newCustomerPanel.add(bottomPanel);
         return newCustomerPanel;
     }
+    // Creates new order page
     private JPanel createOrderFormPage() {
         JPanel orderFormPanel = new JPanel();
 
         orderFormPanel.setLayout(new BoxLayout(orderFormPanel, BoxLayout.Y_AXIS));
-
+        //Fields
         JTextField salesRepField = createOrderFields(orderFormPanel, "Sales Representative:");
         JTextField statusField = createOrderFields(orderFormPanel, "Order Status:");
         JTextField deliveryDateField = createOrderFields(orderFormPanel, "Delivery Date:");
@@ -269,6 +277,7 @@ public class Main {
         orderFormPanel.add(bottomPanel, BorderLayout.SOUTH);
         return orderFormPanel;
     }
+    // Creates inventory page
     private JPanel createInventoryPage() {
         JPanel inventoryPanel = new JPanel(new BorderLayout());
         String[] columnNames = {
@@ -277,6 +286,7 @@ public class Main {
                 "Extended Product Description", "Product Class Description", "On Hand", "Sales Current",
                 "Date Last Received", "On Order"
         };
+        // Reads data from Inventory.txt
         ArrayList<String[]> data = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/Inventory.txt"))) {
             String line;
@@ -305,6 +315,7 @@ public class Main {
 
         return inventoryPanel;
     }
+    // When a new customer is created it is written to customers.txt
     private void writeCustomerToFile(Customer customer) {
         String customerData = customer.getCustomerId() + "," +
                 customer.getName() + "," +
@@ -318,6 +329,7 @@ public class Main {
 
         }
     }
+    // Creates order history page
     private JPanel createOrderHistoryPage() {
         JPanel orderHistoryPanel = new JPanel(new BorderLayout());
         String[] columnNames = {
@@ -355,6 +367,7 @@ public class Main {
 
         return orderHistoryPanel;
     }
+    // Creates customer management page
     private JPanel createCustomerManagementPage() {
         JPanel customerManagementPanel = new JPanel(new BorderLayout());
         String[] columnNames = {
@@ -397,6 +410,7 @@ public class Main {
         customerManagementPanel.add(bottomPanel, BorderLayout.SOUTH);
         return customerManagementPanel;
     }
+    // When a new order is created it is written to orders.txt
     private void writeOrderToFile(String salesRep, String status, String deliveryDate, String orderDate,
                                   String customer, String itemOneName, String itemOneQuantity,
                                   String itemTwoName, String itemTwoQuantity, String itemThreeName,
@@ -419,6 +433,7 @@ public class Main {
 
         }
     }
+    // Updates Customers.txt
     private void updateCustomerFile(DefaultTableModel model) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Customers.txt", true))) {
             for (int i = 0; i < model.getRowCount(); i++) {
@@ -446,6 +461,7 @@ public class Main {
         master.add(Panel);
         return Field;
     }
+    // Create item order panel
     private JTextField[] createItemOrderPanel(JPanel master) {
         JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
@@ -465,6 +481,7 @@ public class Main {
 
         return itemArr;
     }
+    // Check field
     private JCheckBox createCheckFields(JPanel master, String label) {
         JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         Panel.setBackground(backgroundColor);
@@ -476,6 +493,7 @@ public class Main {
         master.add(Panel);
         return Field;
     }
+    // Creates password field
     private JPasswordField createPasswordFields(JPanel master){
         JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         Panel.setBackground(backgroundColor);
