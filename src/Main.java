@@ -1,5 +1,3 @@
-//This is the main class for the program test test test test
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -170,26 +168,46 @@ public class Main {
         JTextField deliveryDateField = createOrderFields(orderFormPanel, "Delivery Date:");
         JTextField orderDateField = createOrderFields(orderFormPanel, "Order Date:");
         JTextField customerField = createOrderFields(orderFormPanel, "Customer:");
-        JTextField itemOneNameField = createOrderFields(orderFormPanel, "Item 1 name:");
-        JTextField itemTwoNameField = createOrderFields(orderFormPanel, "Item 2 name:");
-        JTextField itemThreeNameField = createOrderFields(orderFormPanel, "Item 3 name:");
-        JTextField itemFourNameField = createOrderFields(orderFormPanel, "Item 4 name:");
-        JTextField itemFiveNameField = createOrderFields(orderFormPanel, "Item 5 name:");
-        JTextField itemSixNameField = createOrderFields(orderFormPanel, "Item 6 name:");
-        JTextField itemSevenNameField = createOrderFields(orderFormPanel, "Item 7 name:");
-        JTextField itemEightNameField = createOrderFields(orderFormPanel, "Item 8 name:");
-        JTextField itemNineNameField = createOrderFields(orderFormPanel, "Item 9 name:");
-        JTextField itemTenNameField = createOrderFields(orderFormPanel, "Item 10 name:");
-        JTextField itemOneQuantityField = createOrderFields(orderFormPanel, "Item 1 quantity:");
-        JTextField itemTwoQuantityField = createOrderFields(orderFormPanel, "Item 2 quantity:");
-        JTextField itemThreeQuantityField = createOrderFields(orderFormPanel, "Item 3 quantity:");
-        JTextField itemFourQuantityField = createOrderFields(orderFormPanel, "Item 4 quantity:");
-        JTextField itemFiveQuantityField = createOrderFields(orderFormPanel, "Item 5 quantity:");
-        JTextField itemSixQuantityField = createOrderFields(orderFormPanel, "Item 6 quantity:");
-        JTextField itemSevenQuantityField = createOrderFields(orderFormPanel, "Item 7 quantity:");
-        JTextField itemEightQuantityField = createOrderFields(orderFormPanel, "Item 8 quantity:");
-        JTextField itemNineQuantityField = createOrderFields(orderFormPanel, "Item 9 quantity:");
-        JTextField itemTenQuantityField = createOrderFields(orderFormPanel, "Item 10 quantity:");
+
+        JTextField[] item1 = createItemOrderPanel(orderFormPanel);
+        JTextField itemOneNameField = item1[0];
+        JTextField itemOneQuantityField = item1[1];
+
+        JTextField[] item2 = createItemOrderPanel(orderFormPanel);
+        JTextField itemTwoNameField = item1[0];
+        JTextField itemTwoQuantityField = item1[1];
+
+        JTextField[] item3 = createItemOrderPanel(orderFormPanel);
+        JTextField itemThreeNameField = item1[0];
+        JTextField itemThreeQuantityField = item1[1];
+
+        JTextField[] item4 = createItemOrderPanel(orderFormPanel);
+        JTextField itemFourNameField = item1[0];
+        JTextField itemFourQuantityField = item1[1];
+
+        JTextField[] item5 = createItemOrderPanel(orderFormPanel);
+        JTextField itemFiveNameField = item1[0];
+        JTextField itemFiveQuantityField = item1[1];
+
+        JTextField[] item6 = createItemOrderPanel(orderFormPanel);
+        JTextField itemSixNameField = item1[0];
+        JTextField itemSixQuantityField = item1[1];
+
+        JTextField[] item7 = createItemOrderPanel(orderFormPanel);
+        JTextField itemSevenNameField = item1[0];
+        JTextField itemSevenQuantityField = item1[1];
+
+        JTextField[] item8 = createItemOrderPanel(orderFormPanel);
+        JTextField itemEightNameField = item1[0];
+        JTextField itemEightQuantityField = item1[1];
+
+        JTextField[] item9 = createItemOrderPanel(orderFormPanel);
+        JTextField itemNineNameField = item1[0];
+        JTextField itemNineQuantityField = item1[1];
+
+        JTextField[] item10 = createItemOrderPanel(orderFormPanel);
+        JTextField itemTenNameField = item1[0];
+        JTextField itemTenQuantityField = item1[1];
 
         //Submit button settings
         JButton submitButton = new JButton("Submit Order");
@@ -416,6 +434,25 @@ public class Main {
         Panel.add(Field);
         master.add(Panel);
         return Field;
+    }
+    private JTextField[] createItemOrderPanel(JPanel master) {
+        JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        JTextField itemName = createOrderFields(Panel, "Item Name");
+
+        Panel.add(itemName);
+
+        JTextField itemQuantity = createOrderFields(Panel, "Quantity");
+
+        Panel.add(itemQuantity);
+
+        master.add(Panel);
+
+        JTextField[] itemArr = new JTextField[2];
+        itemArr[0] = itemName;
+        itemArr[1] = itemQuantity;
+
+        return itemArr;
     }
     private JCheckBox createCheckFields(JPanel master, String label) {
         JPanel Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
