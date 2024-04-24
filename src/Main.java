@@ -180,7 +180,7 @@ public class Main {
                     itemTwoNameField.getText(),
                     itemTwoQuantityField.getText(),
                     itemThreeNameField.getText(),
-                    itemThreeQuantityField.getText()/*,
+                    itemThreeQuantityField.getText(),
                     itemFourNameField.getText(),
                     itemFourQuantityField.getText(),
                     itemFiveNameField.getText(),
@@ -194,7 +194,7 @@ public class Main {
                     itemNineNameField.getText(),
                     itemNineQuantityField.getText(),
                     itemTenNameField.getText(),
-                    itemTenQuantityField.getText()*/
+                    itemTenQuantityField.getText()
             );
             JOptionPane.showMessageDialog(orderFormPanel, "Order Submitted!");
         });
@@ -265,7 +265,10 @@ public class Main {
         String[] columnNames = {
                 "Sales Rep Name", "Status", "Delivery Date", "Order Date", "Customer Name",
                 "Item 1 Name", "Item 1 Quantity", "Item 2 Name", "Item 2 Quantity",
-                "Item 3 Name", "Item 3 Quantity"
+                "Item 3 Name", "Item 3 Quantity", "Item 4 Name", "Item 4 Quantity",
+                "Item 5 Name", "Item 5 Quantity", "Item 6 Name", "Item 6 Quantity",
+                "Item 7 Name", "Item 7 Quantity", "Item 8 Name", "Item 8 Quantity",
+                "Item 9 Name", "Item 9 Quantity", "Item 10 Name", "Item 10 Quantity"
         };
         ArrayList<String[]> data = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/Orders.txt"))) {
@@ -339,11 +342,17 @@ public class Main {
     private void writeOrderToFile(String salesRep, String status, String deliveryDate, String orderDate,
                                   String customer, String itemOneName, String itemOneQuantity,
                                   String itemTwoName, String itemTwoQuantity, String itemThreeName,
-                                  String itemThreeQuantity) {
+                                  String itemThreeQuantity, String itemFourName, String itemFourQuantity, String itemFiveName,
+                                  String itemFiveQuantity, String itemSixName, String itemSixQuantity, String itemSevenName,
+                                  String itemSevenQuantity, String itemEightName, String itemEightQuantity,
+                                  String itemNineName, String itemNineQuantity, String itemTenName, String itemTenQuantity) {
         String orderData = String.join(",",
                 salesRep, status, deliveryDate, orderDate, customer,
                 itemOneName, itemOneQuantity, itemTwoName, itemTwoQuantity,
-                itemThreeName, itemThreeQuantity
+                itemThreeName, itemThreeQuantity, itemFourName, itemFourQuantity, itemFiveName,
+                itemFiveQuantity, itemSixName, itemSixQuantity, itemSevenName,
+                itemSevenQuantity, itemEightName, itemEightQuantity,
+                itemNineName, itemNineQuantity, itemTenName, itemTenQuantity
         );
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/Orders.txt", true))) {
             writer.write(orderData);
