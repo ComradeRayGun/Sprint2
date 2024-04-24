@@ -24,6 +24,7 @@ public class Main {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
         JPanel buttonsPanel = new JPanel(new GridLayout(2, 3, 10, 10));
+        cardPanel.add(createLoginPage(), "LoginPage"); //login testing
         cardPanel.add(buttonsPanel, "ButtonsPanel");
         cardPanel.add(createNewPage("NewCustomerPage"), "NewCustomerPage");
         cardPanel.add(createNewPage("OrderFormPage"), "OrderFormPage");
@@ -39,9 +40,37 @@ public class Main {
         buttonsPanel.add(createButtonPanel("Customer Management", "Edit, Remove, & View Customers", "CustomerManagementPage", buttonColor, "src/gui/customerManagement.png"));
         buttonsPanel.add(createButtonPanel("Order History", "View order history details", "OrderHistoryPage", buttonColor, "src/gui/orderHistory.png"));
         cardPanel.add(createCustomerManagementPage(), "CustomerManagementPage");
+        cardLayout.show(cardPanel, "Login Page"); //login testing
         frame.add(cardPanel);
         frame.setVisible(true);
     }
+    //login page
+    private JPanel createLoginPage() {
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
+
+        JTextField usernameField = createOrderFields(loginPanel, "Username:");
+        JPasswordField passwordField = createPasswordFields(loginPanel);
+
+        JButton loginButton = new JButton("Login");
+        loginButton.setBackground(buttonColor);
+        loginButton.setForeground(Color.WHITE);
+        loginButton.addActionListener(e -> {
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword());
+            //check the entered credentials
+            if (username.equals("admin") && password.equals("password")) {
+                //if credentials match navigate to the main page
+                cardLayout.show(cardPanel, "ButtonsPanel");
+            } else {
+                JOptionPane.showMessageDialog(loginPanel, "Invalid username or password!");
+            }
+        });
+
+        loginPanel.add(loginButton);
+        return loginPanel;
+    }
+
     private JPanel createButtonPanel(String title, String description, String pageName, Color buttonColor, String imagePath) {
         //Container Panel Settings
         JPanel panel = new JPanel();
@@ -410,38 +439,5 @@ public class Main {
         master.add(Panel);
         return Field;
     }
-    //Login Page Creation
-  /*  private LoginPage() {
-        JFrame loginFrame = new JFrame();
-        JPanel loginPanel = new JPanel();
-
-        loginFrame.setSize(350,200);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setVisible(true);
-        loginFrame.add(loginPanel);
-
-        loginPanel.setLayout(null);
-
-        JLabel userLabel = new JLabel("User");
-        userLabel.setBounds(10, 20, 80, 25);
-        loginPanel.add(userLabel);
-
-        JTextField userText = new JTextField();
-        userText.setBounds(100, 20, 165, 25);
-        loginPanel.add(userText);
-
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10, 50, 80, 25);
-        loginPanel.add(passwordLabel);
-
-        JPasswordField passwordTet = new JPasswordField();
-        passwordTet.setBounds(100, 50, 165, 25);
-        loginPanel.add(passwordTet);
-
-        JButton signinButton = new JButton();
-        signinButton.setBounds(10, 80, 80, 25);
-
-        loginFrame.setVisible(true);
-    } */
 }
 
