@@ -4,9 +4,6 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-// LOGIN IS Username:admin Password:password
-// Before running the program, make sure that the file locations are correct, copy the ABSOLUTE path of each
-// file and paste that into the correct field
 public class Main {
     //Theme Colors
     Color buttonColor = new Color(156,4,4);
