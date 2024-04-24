@@ -47,10 +47,21 @@ public class Main {
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new BoxLayout(loginPanel, BoxLayout.Y_AXIS));
 
+        //Image
+        ImageIcon imageIcon = new ImageIcon("src/gui/logo.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        imageLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        loginPanel.add(imageLabel);
+
         JTextField usernameField = createOrderFields(loginPanel, "Username:");
         JPasswordField passwordField = createPasswordFields(loginPanel);
 
         JButton loginButton = new JButton("Login");
+        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+
         loginButton.setBackground(buttonColor);
         loginButton.setForeground(Color.WHITE);
         loginButton.addActionListener(e -> {
